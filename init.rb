@@ -1,4 +1,4 @@
-require 'juggernaut'
+require 'juggernaut_rails'
 require 'juggernaut_helper'
 
 # ActionView::Helpers::AssetTagHelper::register_javascript_include_default('juggernaut')
