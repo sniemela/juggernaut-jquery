@@ -9,7 +9,7 @@ module Juggernaut # :nodoc:
         :port                 => (random_host[:public_port] || random_host[:port]),
         :width                => '0px',
         :height               => '0px',
-        :session_id           => session.session_id,
+        :session_id           => session.session_options[:id],
         :swf_address          => "/juggernaut/juggernaut.swf",
         :ei_swf_address       => "/juggernaut/expressinstall.swf",
         :flash_version        => 8,
@@ -25,15 +25,15 @@ module Juggernaut # :nodoc:
 
     def init_juggernaut(options)
       case Juggernaut::JSLIB
-        when :prototype
-          javascript_tag %Q{
-            new Juggernaut(#{options.to_json})
-          }
         when :jquery
           javascript_tag %Q{
             jQuery(document).ready(function(){
               jQuery.Juggernaut.initialize(#{options.to_json})
             });
+          }
+        when :prototype
+          javascript_tag %Q{
+            new Juggernaut(#{options.to_json})
           }
       end
     end
